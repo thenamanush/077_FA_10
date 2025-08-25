@@ -32,7 +32,7 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               Spacer(flex: 1),
               Expanded(
-                flex: 5,
+                flex: 4,
                 child: Container(
                   padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
