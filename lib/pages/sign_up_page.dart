@@ -10,6 +10,29 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
+    // controllers
+    final _emailController = TextEditingController();
+    final _paswordController = TextEditingController();
+    final _confirmpassController = TextEditingController();
+
+    void signUp() async {
+      final email = _emailController.text;
+      final password = _paswordController.text;
+      final confirmpass = _confirmpassController.text;
+
+      if (password != confirmpass) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Passwords do not match!")));
+        return;
+      }
+      try {} catch (e) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Error signing up: $e")));
+      }
+    }
+
     return Scaffold(
       body: Stack(
         children: [
@@ -58,6 +81,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         SizedBox(height: 20),
 
                         TextField(
+                          controller: _emailController,
                           decoration: InputDecoration(
                             labelText: "Email",
                             border: OutlineInputBorder(
@@ -68,6 +92,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         SizedBox(height: 15),
 
                         TextField(
+                          controller: _paswordController,
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: "Password",
@@ -79,6 +104,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         SizedBox(height: 15),
 
                         TextField(
+                          controller: _confirmpassController,
                           obscureText: true,
                           decoration: InputDecoration(
                             labelText: "Confirm Password",
